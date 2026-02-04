@@ -23,7 +23,7 @@ const UserStats = () => {
     try {
       setLoading(true);
       const response = await fetch(
-        "http://localhost:8000/api/dashboard/user-stats",
+        `${import.meta.env.VITE_API_URL}/api/dashboard/user-stats`,
         {
           method: "GET",
           headers: { "Content-Type": "application/json" },

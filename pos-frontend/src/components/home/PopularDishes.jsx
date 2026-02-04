@@ -30,7 +30,7 @@ const PopularDishes = () => {
 
       // Fetch top items from dashboard API
       const topItemsRes = await fetch(
-        "http://localhost:8000/api/dashboard/top-items",
+        `${import.meta.env.VITE_API_URL}/api/dashboard/top-items`,
         { credentials: "include" }
       );
       const topItemsResult = await topItemsRes.json();

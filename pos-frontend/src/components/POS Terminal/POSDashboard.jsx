@@ -255,7 +255,7 @@ const POSDashboard = () => {
     try {
       setUpdateLoading(true);
       const res = await fetch(
-        `http://localhost:8000/api/orders/${customer.editingOrderId}`,
+        `${import.meta.env.VITE_API_URL}/api/orders/${customer.editingOrderId}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -312,7 +312,7 @@ const POSDashboard = () => {
     };
     try {
       setInProgressLoading(true);
-      const res = await fetch("http://localhost:8000/api/orders", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/orders`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -372,7 +372,9 @@ const POSDashboard = () => {
       try {
         setLoading(true);
         const res = await fetch(
-          `http://localhost:8000/api/orders/${customer.editingOrderId}`,
+          `${import.meta.env.VITE_API_URL}/api/orders/${
+            customer.editingOrderId
+          }`,
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
@@ -418,7 +420,7 @@ const POSDashboard = () => {
     };
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:8000/api/orders", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/orders`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -454,7 +456,7 @@ const POSDashboard = () => {
     }
     try {
       const res = await fetch(
-        "http://localhost:8000/api/payments/create-payment",
+        `${import.meta.env.VITE_API_URL}/api/payments/create-payment`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

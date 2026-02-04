@@ -28,7 +28,7 @@ const TopSellingItems = () => {
       setLoading(true);
 
       const response = await fetch(
-        "http://localhost:8000/api/dashboard/top-items",
+        `${import.meta.env.VITE_API_URL}/api/dashboard/top-items`,
         { credentials: "include" }
       );
       const result = await response.json();

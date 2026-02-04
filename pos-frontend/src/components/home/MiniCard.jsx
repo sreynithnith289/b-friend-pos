@@ -38,9 +38,12 @@ const MiniCard = () => {
     try {
       setLoading(true);
 
-      const ordersRes = await fetch("http://localhost:8000/api/orders", {
-        credentials: "include",
-      });
+      const ordersRes = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/orders`,
+        {
+          credentials: "include",
+        }
+      );
       const ordersData = await ordersRes.json();
       const allOrders = ordersData?.data || ordersData || [];
 

@@ -47,9 +47,12 @@ const Home = () => {
   const fetchQuickStats = async () => {
     try {
       // Fetch tables
-      const tablesRes = await fetch("http://localhost:8000/api/table", {
-        credentials: "include",
-      });
+      const tablesRes = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/table`,
+        {
+          credentials: "include",
+        }
+      );
       const tablesData = await tablesRes.json();
       const tables = tablesData?.data || tablesData || [];
       const activeTables = Array.isArray(tables)
@@ -61,9 +64,12 @@ const Home = () => {
         : 0;
 
       // Fetch orders for avg
-      const ordersRes = await fetch("http://localhost:8000/api/orders", {
-        credentials: "include",
-      });
+      const ordersRes = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/orders`,
+        {
+          credentials: "include",
+        }
+      );
       const ordersData = await ordersRes.json();
       const orders = Array.isArray(ordersData)
         ? ordersData
