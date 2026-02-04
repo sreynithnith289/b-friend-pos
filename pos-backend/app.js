@@ -17,18 +17,15 @@ const app = express();
 const PORT = config.port || 5000;
 // Connect to MongoDB
 connectDB();
-// ✅ Fixed CORS settings
-const corsOptions = {
-  origin: [
-    "http://localhost:5173",
-    "http://localhost:5174",
-    "https://bfriend-pos.onrender.com",
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true,
-};
-app.use(cors(corsOptions));
+// ✅ Fixed CORS settings - Allow all origins
+app.use(
+  cors({
+    origin: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
 // Parse JSON bodies & cookies
 app.use(express.json());
 app.use(cookieParser());
