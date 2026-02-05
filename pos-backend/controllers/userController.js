@@ -77,11 +77,13 @@ const login = async (req, res, next) => {
       process.env.JWT_SECRET,
       { expiresIn: "30d" }
     );
+    const isProduction = process.env.NODE_ENV === "production";
+
     res.cookie("accessToken", accessToken, {
       maxAge: 1000 * 60 * 60 * 24 * 30,
       httpOnly: true,
-      sameSite: "lax",
-      secure: false,
+      sameSite: isProduction ? "none" : "lax",
+      secure: isProduction,
       path: "/",
     });
     // ✅ Return user data including phone
@@ -123,12 +125,14 @@ const logout = async (req, res, next) => {
         status: "Logged Out",
       });
     }
-    res.clearCookie("accessToken", {
-      httpOnly: true,
-      sameSite: "lax",
-      secure: false,
-      path: "/",
-    });
+    const isProduction = process.env.NODE_ENV === "production";
+
+res.clearCookie("accessToken", {
+  httpOnly: true,
+  sameSite: isProduction ? "none" : "lax",
+  secure: isProduction,
+  path: "/",
+});
     res
       .status(200)
       .json({ success: true, message: "User logout successfully!" });
